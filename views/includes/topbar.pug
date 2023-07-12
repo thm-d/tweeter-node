@@ -1,0 +1,38 @@
+script(src="/javascripts/search-bar.js") 
+script(src="/javascripts/menu-bars.js") 
+nav(class="navbar navbar-expand-md navbar-light bg-white px-3")
+  div(class="d-flex align-items-center")
+    a(class="navbar-brand" href="/tweets")
+      i(class="fa-solid fa-dove fa-xl" style="color: #2e82c2;")
+    if isAuthenticated
+      form
+        input(type="text" class="form-control mr2" placeholder="search an username" id="search-input") 
+        div(id="search-menu-container")
+  button(id="menu-bars" class="navbar-toggler")
+    span(class="navbar-toggler-icon")
+    div(id="menu-modal-container" class="menu-modal rounded invisible")
+      if isAuthenticated
+        ul(class="navbar-nav ms-auto li-container")
+          li(class="link-modal")
+            a(class="nav-link nav-link-modal" href="/tweets/new") Tweet
+          li(class="link-modal")
+            a(class="nav-link" href="/auth/signout") Déconnexion
+      else
+        ul(class="navbar-nav ms-auto")
+          li(class="link-modal")
+            a(class="nav-link" href="/auth/signin/form") Connexion
+          li(class="link-modal")
+            a(class="nav-link" href="/users/signup/form") Inscription
+  div(class="collapse navbar-collapse")
+    if isAuthenticated
+      ul(class="navbar-nav ms-auto")
+        li(class="nav-item active")
+          a(class="btn btn-primary me-3 btn-tweet" href="/tweets/new") Tweet
+        li(class="nav-item active")
+          a(class="nav-link" href="/auth/signout") Déconnexion
+    else
+      ul(class="navbar-nav ms-auto")
+        li(class="nav-item")
+          a(class="nav-link" href="/auth/signin/form") Connexion
+        li(class="nav-item")
+          a(class="nav-link" href="/users/signup/form") Inscription
